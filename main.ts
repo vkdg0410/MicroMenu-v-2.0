@@ -97,57 +97,74 @@ function ShowFish () {
     led.plotBrightness(fishX, fishY, 50)
 }
 states.setEnterHandler("Flash", function () {
-    basic.showString("Flash!")
-    music.play(music.tonePlayable(392, music.beat(BeatFraction.Double)), music.PlaybackMode.InBackground)
-    basic.pause(3000)
-    music.play(music.tonePlayable(392, music.beat(BeatFraction.Double)), music.PlaybackMode.InBackground)
-    basic.showLeds(`
-        # . . . .
-        # . . . .
-        # . . . .
-        # . . . .
-        # . . . .
-        `)
-    basic.pause(3000)
-    music.play(music.tonePlayable(392, music.beat(BeatFraction.Double)), music.PlaybackMode.InBackground)
-    basic.showLeds(`
-        # # . . .
-        # # . . .
-        # # . . .
-        # # . . .
-        # # . . .
-        `)
-    basic.pause(3000)
-    music.play(music.tonePlayable(392, music.beat(BeatFraction.Double)), music.PlaybackMode.InBackground)
-    basic.showLeds(`
-        # # # . .
-        # # # . .
-        # # # . .
-        # # # . .
-        # # # . .
-        `)
-    basic.pause(3000)
-    music.play(music.tonePlayable(392, music.beat(BeatFraction.Double)), music.PlaybackMode.InBackground)
-    basic.showLeds(`
-        # # # # .
-        # # # # .
-        # # # # .
-        # # # # .
-        # # # # .
-        `)
-    basic.pause(3000)
-    music.play(music.tonePlayable(392, music.beat(BeatFraction.Double)), music.PlaybackMode.InBackground)
-    basic.showLeds(`
-        # # # # #
-        # # # # #
-        # # # # #
-        # # # # #
-        # # # # #
-        `)
-    basic.pause(3000)
-    music.play(music.tonePlayable(392, music.beat(BeatFraction.Double)), music.PlaybackMode.InBackground)
-    basic.showString("Flashing compleeted!")
-    control.reset()
+    while (states.matchCurrent("Flash")) {
+        basic.showString("Flash!")
+        music.play(music.tonePlayable(392, music.beat(BeatFraction.Double)), music.PlaybackMode.InBackground)
+        basic.pause(3000)
+        music.play(music.tonePlayable(392, music.beat(BeatFraction.Double)), music.PlaybackMode.InBackground)
+        basic.showLeds(`
+            # . . . .
+            # . . . .
+            # . . . .
+            # . . . .
+            # . . . .
+            `)
+        if (input.buttonIsPressed(Button.B)) {
+            states.setState("FlEr")
+        }
+        basic.pause(3000)
+        music.play(music.tonePlayable(392, music.beat(BeatFraction.Double)), music.PlaybackMode.InBackground)
+        basic.showLeds(`
+            # # . . .
+            # # . . .
+            # # . . .
+            # # . . .
+            # # . . .
+            `)
+        if (input.buttonIsPressed(Button.B)) {
+            states.setState("FlEr")
+        }
+        basic.pause(3000)
+        music.play(music.tonePlayable(392, music.beat(BeatFraction.Double)), music.PlaybackMode.InBackground)
+        basic.showLeds(`
+            # # # . .
+            # # # . .
+            # # # . .
+            # # # . .
+            # # # . .
+            `)
+        if (input.buttonIsPressed(Button.B)) {
+            states.setState("FlEr")
+        }
+        basic.pause(3000)
+        music.play(music.tonePlayable(392, music.beat(BeatFraction.Double)), music.PlaybackMode.InBackground)
+        basic.showLeds(`
+            # # # # .
+            # # # # .
+            # # # # .
+            # # # # .
+            # # # # .
+            `)
+        if (input.buttonIsPressed(Button.B)) {
+            states.setState("FlEr")
+        }
+        basic.pause(3000)
+        music.play(music.tonePlayable(392, music.beat(BeatFraction.Double)), music.PlaybackMode.InBackground)
+        basic.showLeds(`
+            # # # # #
+            # # # # #
+            # # # # #
+            # # # # #
+            # # # # #
+            `)
+        basic.pause(3000)
+        music.play(music.tonePlayable(392, music.beat(BeatFraction.Double)), music.PlaybackMode.InBackground)
+        if (input.buttonIsPressed(Button.B)) {
+            states.setState("FlEr")
+        }
+        basic.showString("Flashing compleeted!")
+        control.reset()
+    }
 })
 states.addLoopHandler("Error", function () {
     music.play(music.createSoundExpression(WaveShape.Sine, 1, 1002, 255, 255, 500, SoundExpressionEffect.Tremolo, InterpolationCurve.Linear), music.PlaybackMode.UntilDone)
