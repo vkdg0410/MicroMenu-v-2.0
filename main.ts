@@ -236,11 +236,11 @@ states.addLoopHandler("On", function () {
     }
 })
 states.addLoopHandler("On", function () {
-    basic.pause(3000)
     if (input.buttonIsPressed(Button.A)) {
         states.setState("OnLDD")
     } else if (input.buttonIsPressed(Button.B)) {
         appSD += 1
+        basic.pause(3000)
     }
 })
 states.addLoopHandler("On", function () {
@@ -330,11 +330,11 @@ states.addLoopHandler("Debug", function () {
     }
 })
 states.addLoopHandler("Debug", function () {
-    basic.pause(3000)
     if (input.buttonIsPressed(Button.A)) {
         states.setState("OnSDM")
     } else if (input.buttonIsPressed(Button.B)) {
         appDMod += 1
+        basic.pause(3000)
     }
 })
 states.addLoopHandler("Debug", function () {
