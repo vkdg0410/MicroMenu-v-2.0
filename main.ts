@@ -50,13 +50,6 @@ states.addLoopHandler("Stall", function () {
     music.play(music.builtinPlayableSoundEffect(soundExpression.giggle), music.PlaybackMode.LoopingInBackground)
     basic.showString("STALLING!")
 })
-states.addLoopHandler("Flash", function () {
-    if (input.buttonIsPressed(Button.B)) {
-        basic.clearScreen()
-        music.stopAllSounds()
-        states.setState("FlEr")
-    }
-})
 states.setEnterHandler("On", function () {
     appSD = 0
 })
@@ -201,7 +194,7 @@ states.addLoopHandler("Sleep", function () {
     music.play(music.builtinPlayableSoundEffect(soundExpression.yawn), music.PlaybackMode.UntilDone)
     basic.showString("ZZZ")
     if (input.buttonIsPressed(Button.B)) {
-        states.setState("Debug")
+        states.setState(states.previousState())
     }
 })
 states.addLoopHandler("Cloc", function () {
@@ -669,6 +662,10 @@ if (input.buttonIsPressed(Button.A)) {
 }
 basic.forever(function () {
     if (input.logoIsPressed() && input.buttonIsPressed(Button.B)) {
-        states.setState("On")
+        if (states.matchPrevious("On")) {
+            states.setState("On")
+        } else if (states.matchPrevious("OnSDM")) {
+            states.setState("OnSDM")
+        }
     }
 })
