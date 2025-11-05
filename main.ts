@@ -741,6 +741,7 @@ basic.showLeds(`
     . . # . #
     `)
 basic.pause(1000)
+basic.clearScreen()
 if (input.buttonIsPressed(Button.A)) {
     Debug = 1
     states.setState("Debug")
