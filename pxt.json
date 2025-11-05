@@ -1,0 +1,50 @@
+{
+    "name": "MicroMenu",
+    "description": "",
+    "dependencies": {
+        "core": "*",
+        "radio": "*",
+        "microphone": "*",
+        "audio-recording": "*",
+        "radio-broadcast": "*",
+        "microbit-pxt-clicks": "github:bsiever/microbit-pxt-clicks#v0.2.2",
+        "states": "github:hovavo/pxt-states#v2.0.5",
+        "datalogger": "*",
+        "ds1307": "github:tinkertanker/pxt-realtimeclock-ds1307#cac7e9e8edf290e6f12cb3920f014c20d39feb58",
+        "microbit-pxt-timeanddate": "github:bsiever/microbit-pxt-timeanddate#v2.0.33",
+        "power": "github:microbit-foundation/pxt-microbit-v2-power#v0.2.7",
+        "data-streamer": "github:microsoft/pxt-data-streamer#v0.1.3"
+    },
+    "files": [
+        "main.blocks",
+        "main.ts",
+        "README.md",
+        "main.py"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "targetVersions": {
+        "branch": "v7.0.57",
+        "tag": "v7.0.57",
+        "commits": "https://github.com/microsoft/pxt-microbit/commits/1a9e10ee33883477990f6bc7451dae38318586e3",
+        "target": "8.0.18",
+        "pxt": "11.1.13",
+        "targetId": "microbit"
+    },
+    "supportedTargets": [
+        "microbit"
+    ],
+    "preferredEditor": "blocksprj",
+    "yotta": {
+        "config": {
+            "microbit-dal": {
+                "bluetooth": {
+                    "open": 0,
+                    "whitelist": 1,
+                    "security_level": "SECURITY_MODE_ENCRYPTION_NO_MITM"
+                }
+            }
+        }
+    }
+}
