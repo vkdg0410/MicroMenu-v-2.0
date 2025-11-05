@@ -156,7 +156,7 @@ states.setEnterHandler("Flash", function () {
             states.setState("FlEr")
         }
         basic.showString("Flashing compleeted!")
-        control.reset()
+        states.setState("AUpd")
     }
 })
 states.addLoopHandler("Error", function () {
@@ -250,7 +250,7 @@ states.addLoopHandler("On", function () {
         states.setState("OnLDD")
     } else if (input.buttonIsPressed(Button.B)) {
         appSD += 1
-        basic.pause(3000)
+        basic.pause(1500)
     }
 })
 states.addLoopHandler("On", function () {
@@ -315,7 +315,7 @@ states.setEnterHandler("FlEr", function () {
 states.setEnterHandler("V", function () {
     basic.showString("V 1.0")
     if (input.buttonIsPressed(Button.A) || input.buttonIsPressed(Button.B)) {
-        states.setState("OnSDM")
+        states.setState("Debug")
     }
 })
 function ShowFishingLine () {
@@ -346,7 +346,7 @@ states.addLoopHandler("Debug", function () {
         states.setState("OnSDM")
     } else if (input.buttonIsPressed(Button.B)) {
         appDMod += 1
-        basic.pause(3000)
+        basic.pause(1500)
     }
 })
 states.addLoopHandler("Debug", function () {
@@ -408,7 +408,15 @@ states.addLoopHandler("OnLDD", function () {
 states.setEnterHandler("Debug", function () {
     appDMod = 0
     music.play(music.builtinPlayableSoundEffect(soundExpression.twinkle), music.PlaybackMode.UntilDone)
-    basic.showString("DEBUG MODE!")
+    basic.showString("DM")
+    basic.showLeds(`
+        . # # # .
+        . # # # #
+        . . # . .
+        . . # . .
+        . . # . .
+        `)
+    basic.pause(250)
 })
 function show_obs () {
     if (state != 0) {
@@ -449,6 +457,23 @@ function show_obs () {
         }
     }
 }
+states.setEnterHandler("AUpd", function () {
+    basic.showString("Restart? [A] Yes [B] No")
+    basic.showLeds(`
+        . # # # .
+        # . . . #
+        # . . . #
+        # . . . #
+        . # # # .
+        `)
+    while (true) {
+        if (input.buttonIsPressed(Button.A)) {
+            control.reset()
+        } else if (input.buttonIsPressed(Button.B)) {
+            states.setState("On")
+        }
+    }
+})
 states.addLoopHandler("Mario", function () {
     if (state == -1) {
         basic.showLeds(`
@@ -650,9 +675,16 @@ let obs2 = 0
 let obs1 = 0
 let state = 0
 music.play(music.builtinPlayableSoundEffect(soundExpression.hello), music.PlaybackMode.UntilDone)
-basic.showIcon(IconNames.Happy)
+basic.showString("Dev")
+basic.pause(100)
+basic.showLeds(`
+    # . # . .
+    # # # . #
+    # . # # #
+    # . # . #
+    . . # . #
+    `)
 basic.pause(1000)
-basic.clearScreen()
 if (input.buttonIsPressed(Button.A)) {
     states.setState("Debug")
 } else if (input.buttonIsPressed(Button.B)) {
