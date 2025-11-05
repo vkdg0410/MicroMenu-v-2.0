@@ -321,7 +321,9 @@ states.setEnterHandler("FlEr", function () {
 })
 states.setEnterHandler("V", function () {
     basic.showString("V 1.0")
-    states.setState("OnSDM")
+    if (input.buttonIsPressed(Button.A) || input.buttonIsPressed(Button.B)) {
+        states.setState("OnSDM")
+    }
 })
 function ShowFishingLine () {
     if (show_fishingline == 2) {
