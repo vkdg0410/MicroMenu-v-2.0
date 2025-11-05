@@ -1,5 +1,5 @@
 
-> Az oldal megnyitása itt: [https://vkdg0410.github.io/micromenu-v-2-0/](https://vkdg0410.github.io/micromenu-v-2-0/)
+> Az oldal megnyitása itt: [https://vkdg0410.github.iomicromenu-v-2.0/](https://vkdg0410.github.io/micromenu-v-2.0/)
 
 ## Használj egy bővítményt
 
@@ -8,7 +8,7 @@ Ez a repó **bővítményként** használható a MakeCode-ban.
 * [https://makecode.microbit.org/](https://makecode.microbit.org/) megnyitása
 * kattints au **Új projekt**-re
 * kattints a **Bővítmények** gombra a fogaskerék menüben
-* **https://github.com/vkdg0410/micromenu-v-2-0** keresése, majd importálás
+* **https://github.com/vkdg0410/micromenu-v-2.0** keresése, majd importálás
 
 ## A projekt szerkesztése
 
@@ -16,7 +16,7 @@ A repó szerkesztése a MakeCode-ban.
 
 * [https://makecode.microbit.org/](https://makecode.microbit.org/) megnyitása
 * kattints az **Import**-ra, utána az **Import URL**-re
-* illeszd be a **https://github.com/vkdg0410/micromenu-v-2-0** címet és kattints az importra
+* illeszd be a **https://github.com/vkdg0410/micromenu-v-2.0 és kattints az importra
 
 #### Metaadatok (kereséshez, rendereléshez)
 
