@@ -236,6 +236,50 @@ states.setEnterHandler("Dit", function () {
     basic.showString(timeanddate.date(timeanddate.DateFormat.YYYY_MM_DD))
     states.setState("Cloc")
 })
+states.setEnterHandler("Cod", function () {
+    if (Tris == 0) {
+        basic.showString("BANNED!")
+    } else {
+        PINWritingNum = 0
+        PINWrotNum = []
+        for (let index = 0; index < PINohCODE.length; index++) {
+            while (true) {
+                basic.showNumber(PINWritingNum)
+                if (input.buttonIsPressed(Button.B)) {
+                    if (PINWritingNum == 9) {
+                        PINWritingNum = 0
+                    } else {
+                        PINWritingNum += 1
+                    }
+                } else if (input.buttonIsPressed(Button.A)) {
+                    PINWrotNum.push(PINWritingNum)
+                    PINWritingNum = 0
+                    basic.pause(1500)
+                }
+            }
+        }
+        if (PINWrotNum == PINohCODE) {
+            basic.showLeds(`
+                . . . . .
+                . . . . #
+                . . . # .
+                # . # . .
+                . # . . .
+                `)
+            states.setState("On")
+        } else {
+            basic.showLeds(`
+                # . . . #
+                . # . # .
+                . . # . .
+                . # . # .
+                # . . . #
+                `)
+            Tris += -1
+            states.setState("Cod")
+        }
+    }
+})
 states.setEnterHandler("Tim", function () {
     basic.showString(timeanddate.time(timeanddate.TimeFormat.HHMM24hr))
     states.setState("Cloc")
@@ -302,20 +346,24 @@ states.setEnterHandler("FlEr", function () {
         `)
     basic.pause(1000)
     basic.showString("Resume update? [A]Yes [B]No")
-    if (input.buttonIsPressed(Button.A)) {
-        states.setState("Flash")
-    } else if (input.buttonIsPressed(Button.B)) {
-        if (randint(0, 2) == 1) {
-            states.setState("Error")
-        } else {
-            states.setState("On")
+    while (true) {
+        if (input.buttonIsPressed(Button.A)) {
+            states.setState("Flash")
+        } else if (input.buttonIsPressed(Button.B)) {
+            if (randint(0, 2) == 1) {
+                states.setState("Error")
+            } else {
+                states.setState("On")
+            }
         }
     }
 })
 states.setEnterHandler("V", function () {
-    basic.showString("V 1.0")
-    if (input.buttonIsPressed(Button.A) || input.buttonIsPressed(Button.B)) {
-        states.setState("Debug")
+    while (true) {
+        basic.showString("V 1.0")
+        if (input.buttonIsPressed(Button.A) || input.buttonIsPressed(Button.B)) {
+            states.setState("Debug")
+        }
     }
 })
 function ShowFishingLine () {
@@ -656,6 +704,8 @@ let speed = 0
 let motion_lock = 0
 let fishline_max = 0
 let show_fishingline = 0
+let PINWrotNum: number[] = []
+let PINWritingNum = 0
 let ModeCloc = 0
 let appDMod = 0
 let fish_score = 0
@@ -674,6 +724,12 @@ let obs1_status = 0
 let obs2 = 0
 let obs1 = 0
 let state = 0
+let Debug = 0
+let Tris = 0
+let PINohCODE: number[] = []
+let Coded = 0
+PINohCODE = []
+Tris = 3
 music.play(music.builtinPlayableSoundEffect(soundExpression.hello), music.PlaybackMode.UntilDone)
 basic.showString("Dev")
 basic.pause(100)
@@ -686,18 +742,23 @@ basic.showLeds(`
     `)
 basic.pause(1000)
 if (input.buttonIsPressed(Button.A)) {
+    Debug = 1
     states.setState("Debug")
 } else if (input.buttonIsPressed(Button.B)) {
     states.setState("Error")
 } else {
-    states.setState("On")
+    if (Coded == 1) {
+        states.setState("Cod")
+    } else {
+        states.setState("On")
+    }
 }
 basic.forever(function () {
     if (input.logoIsPressed() && input.buttonIsPressed(Button.B)) {
-        if (states.matchPrevious("On")) {
-            states.setState("On")
-        } else if (states.matchPrevious("OnSDM")) {
+        if (Debug == 1) {
             states.setState("OnSDM")
+        } else {
+            states.setState("On")
         }
     }
 })
